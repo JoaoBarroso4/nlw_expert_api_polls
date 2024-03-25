@@ -1,4 +1,4 @@
-import { FastifyInstance, FastifyRequest } from "fastify";
+import { FastifyInstance } from "fastify";
 import { voting } from "../../utils/voting-pub-sub";
 import { z } from "zod";
 
@@ -6,16 +6,15 @@ export async function pollResults(app: FastifyInstance) {
   app.get(
     "/poll/:pollId/results",
     { websocket: true },
-    (connection, request) => {
+    (socket, request) => {
       const getPollParams = z.object({
         pollId: z.string().uuid(),
       });
 
       const { pollId } = getPollParams.parse(request.params);
-      console.log(pollId);
 
       voting.subscribe(pollId, (message) => {
-        connection.socket.send(JSON.stringify(message));
+        socket.send(JSON.stringify(message));
       });
     },
   );
