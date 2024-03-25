@@ -1,7 +1,7 @@
 
 # Polling App
 
-This is a polling application built with TypeScript, PostgresSQL and Prisma. This app was devolved during the Next Level Week Expert event, hosted by Rocketseat.
+This is a polling application built with TypeScript, PostgresSQL and Prisma. This app was developed during the Next Level Week Expert event, hosted by Rocketseat.
 
 ## Getting Started
 
